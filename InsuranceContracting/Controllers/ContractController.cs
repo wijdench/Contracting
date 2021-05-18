@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InsuranceContracting.Data;
+using InsuranceContracting.Helpers;
 using InsuranceContracting.Models;
 using Microsoft.AspNetCore.Mvc;
+
 namespace InsuranceContracting.Controllers
 {
     [Route("api/[controller]")]
@@ -12,10 +14,12 @@ namespace InsuranceContracting.Controllers
     public class ContractController : ControllerBase
     {
         private readonly InsuranceContractingContext context;
+        private readonly IShortestChain shortestChainHelper;
 
-        public ContractController(InsuranceContractingContext context)
+        public ContractController(InsuranceContractingContext context, IShortestChain shortestChainHelper)
         {
             this.context = context;
+            this.shortestChainHelper = shortestChainHelper;
         }
 
         [HttpGet]
@@ -50,9 +54,13 @@ namespace InsuranceContracting.Controllers
         }
 
         [HttpGet("shortestContractChain")]
-        public ActionResult<List<Contract>> getShortestContractChain([FromQuery] string firstContractorId, [FromQuery] string secondContractorId)
+        public ActionResult<List<string>> getShortestContractChain([FromQuery] string firstContractorId, [FromQuery] string secondContractorId)
         {
-            return new List<Contract>();
+            List<Contract> contracts = context.Contracts.ToList();
+
+            List<string> shortestChainIds = shortestChainHelper.FindShortestChain(contracts, firstContractorId, secondContractorId);
+
+            return FindContractChainNames(shortestChainIds);
         }
 
         [HttpDelete]
@@ -82,9 +90,25 @@ namespace InsuranceContracting.Controllers
 
         private bool IsDuplicateContract(Contract contract)
         {
-            bool contractExist = context.Contracts.Any(c => new string[] { contract.FirstContractorId, contract.SecondContractorId }.Contains(c.FirstContractorId));
+            bool contractExist = context.Contracts.Any(c => ((c.FirstContractorId == contract.FirstContractorId && c.SecondContractorId == contract.SecondContractorId)
+                || (c.FirstContractorId == contract.SecondContractorId && c.SecondContractorId == contract.FirstContractorId)));
 
             return contractExist;
+        }
+
+        private List<string> FindContractChainNames(List<string> contractChainsIds)
+        {
+            List<string> contractChainNames = new List<string>();
+
+            if (contractChainsIds.Any())
+            {
+                foreach (string chainId in contractChainsIds)
+                {
+                    contractChainNames.Add(context.Contractors.First(c => c.Id == chainId).Name);
+                }
+            }
+
+            return contractChainNames;
         }
     }
 }

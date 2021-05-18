@@ -11,7 +11,7 @@ const ContractingChainContainer = (): JSX.Element => {
     const { enqueueSnackbar } = useSnackbar();
     const [loading, setLoading] = useState<boolean>(true);
     const [contractors, setContractors] = useState<Contractor[]>([]);
-    const [contractorsChain, setContractorsChain] = useState<Contractor[]>([]);
+    const [contractorsChain, setContractorsChain] = useState<string[]>([]);
 
     useEffect(() => {
         ContractorApi.getContractors()

@@ -9465,11 +9465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chebb\\source\\repos\\InsuranceContracting\\InsuranceContracting.test\\InsuranceContracting.test.csproj",
+      "projectUniqueName": "C:\\Users\\chebb\\Desktop\\apexa\\Contracting\\InsuranceContracting.test\\InsuranceContracting.test.csproj",
       "projectName": "InsuranceContracting.test",
-      "projectPath": "C:\\Users\\chebb\\source\\repos\\InsuranceContracting\\InsuranceContracting.test\\InsuranceContracting.test.csproj",
+      "projectPath": "C:\\Users\\chebb\\Desktop\\apexa\\Contracting\\InsuranceContracting.test\\InsuranceContracting.test.csproj",
       "packagesPath": "C:\\Users\\chebb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chebb\\source\\repos\\InsuranceContracting\\InsuranceContracting.test\\obj\\",
+      "outputPath": "C:\\Users\\chebb\\Desktop\\apexa\\Contracting\\InsuranceContracting.test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9488,8 +9488,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\chebb\\source\\repos\\InsuranceContracting\\InsuranceContracting\\InsuranceContracting.csproj": {
-              "projectPath": "C:\\Users\\chebb\\source\\repos\\InsuranceContracting\\InsuranceContracting\\InsuranceContracting.csproj"
+            "C:\\Users\\chebb\\Desktop\\apexa\\Contracting\\InsuranceContracting\\InsuranceContracting.csproj": {
+              "projectPath": "C:\\Users\\chebb\\Desktop\\apexa\\Contracting\\InsuranceContracting\\InsuranceContracting.csproj"
             }
           }
         }

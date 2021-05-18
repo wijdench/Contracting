@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using InsuranceContracting.Controllers;
+﻿using InsuranceContracting.Controllers;
 using InsuranceContracting.Models;
 using InsuranceContracting.Transfer;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +12,6 @@ namespace InsuranceContracting.test.Controllers
     [TestClass]
     public class ContractorControllerTest : DbTest
     {
-        private static readonly IFixture fixture = new Fixture();
         private ContractorController controller = default!;
 
         [TestInitialize]

@@ -1,4 +1,5 @@
 using InsuranceContracting.Data;
+using InsuranceContracting.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -26,6 +27,8 @@ namespace InsuranceContracting
             services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddSwaggerGen();
+
+            services.AddScoped<IShortestChain, ShortestChain>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

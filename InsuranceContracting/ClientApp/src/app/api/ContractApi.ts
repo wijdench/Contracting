@@ -1,7 +1,5 @@
 import getUrlControllerApi from '../utils/urlUtils';
 import Contract from '../models/Contract';
-import { responseToContractors } from '../transfer/ContractorAssembler';
-import Contractor from '../models/Contractor';
 
 const linkContractor = getUrlControllerApi('Contract');
 
@@ -20,7 +18,7 @@ export default class ContractApi {
         });
     } 
 
-    static getShortestContractChain(firstContractorId : string, secondContractorId: string) : Promise<Contractor[]> {
+    static getShortestContractChain(firstContractorId : string, secondContractorId: string) : Promise<string[]> {
         const params = new URLSearchParams({
             firstContractorId: firstContractorId,
             secondContractorId: secondContractorId,
@@ -35,7 +33,6 @@ export default class ContractApi {
             }
             return response;
         })
-        .then(response => response.json())
-        .then(responseToContractors);
+        .then(response => response.json());
     }
 }

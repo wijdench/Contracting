@@ -1,12 +1,9 @@
-﻿using AutoFixture;
-using InsuranceContracting.Controllers;
+﻿using InsuranceContracting.Controllers;
+using InsuranceContracting.Helpers;
 using InsuranceContracting.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using NSubstitute;
 using System.Threading.Tasks;
 
 namespace InsuranceContracting.test.Controllers
@@ -14,13 +11,13 @@ namespace InsuranceContracting.test.Controllers
     [TestClass]
     public class ContractControllerTest : DbTest
     {
-        private static readonly IFixture fixture = new Fixture();
+        private readonly IShortestChain shortestChainHelper = Substitute.For<IShortestChain>();
         private ContractController controller = default!;
         
         [TestInitialize]
         public void Initialize()
         {
-            controller = new ContractController(Context);
+            controller = new ContractController(Context, shortestChainHelper);
         }
 
         [TestMethod]
